@@ -18,7 +18,7 @@ SQL techniques used:
 ================================================================================
 */
 
-WITH top_products AS (
+WITH top_categories AS (
     SELECT
         COALESCE(p.product_category_name, 'unknown/other') AS category,
         COUNT(DISTINCT oi.order_id) AS total_orders,
@@ -33,7 +33,7 @@ final_calculations AS (
     SELECT 
         *,
         SUM(total_revenue) OVER() AS grand_total_revenue
-    FROM top_products
+    FROM top_categories
 )
 SELECT 
     category,
@@ -56,4 +56,5 @@ Findings:
 
 Takeaway:
 Focus marketing on top performers. Good category diversity reduces risk.
+
 */
